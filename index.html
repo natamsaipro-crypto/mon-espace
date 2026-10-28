@@ -232,7 +232,7 @@ money(){
   <div class="card">${items.length?`<ul class="list">${items.map(x=>`<li><div class="grow"><b>${esc(x.label||x.cat)}</b><div class="sub">${fdate(x.date)} · ${esc(x.cat)}</div></div><b class="${x.type==='in'?'pos':'neg'}">${x.type==='in'?'+':'−'}${eur(x.amount)}</b><button class="x" data-act="delMoney" data-id="${x.id}" aria-label="Supprimer">×</button></li>`).join('')}</ul>`:'<div class="empty">Aucune opération ce mois-ci</div>'}</div>`;
 },
 settings(){
-  const ip=location.host;
+  const ip=location.host+location.pathname.replace(/index\.html$/,'');
   return `<div class="card"><h2 style="margin-top:0">Sauvegarde</h2>
     <p class="sub">Tes données restent sur cet appareil. Pour les copier du Mac vers l’iPhone (ou faire une sauvegarde), exporte un fichier puis importe-le sur l’autre appareil.</p>
     <div class="row" style="flex-wrap:wrap"><button class="btn" data-act="export">Exporter</button><button class="btn ghost" data-act="import">Importer</button></div></div>
@@ -240,7 +240,7 @@ settings(){
     <form class="row" data-form="cat"><input name="cat" placeholder="Nouvelle catégorie" required><button class="btn">Ajouter</button></form>
     <div class="chips">${S.cats.map(c=>`<button class="chip" data-act="delCat" data-id="${esc(c)}">${esc(c)} ×</button>`).join('')}</div></div>
   <div class="card"><h2 style="margin-top:0">Installer l’app</h2>
-    <p class="sub"><b>Sur iPhone</b></p><ol class="steps sub"><li>Ouvre <b>${esc(ip)}</b> dans Safari (même Wi-Fi que le Mac)</li><li>Touche le bouton Partager</li><li>Choisis « Sur l’écran d’accueil »</li></ol>
+    <p class="sub"><b>Sur iPhone</b></p><ol class="steps sub"><li>Ouvre <b>${esc(ip)}</b> dans Safari</li><li>Touche le bouton Partager</li><li>Choisis « Sur l’écran d’accueil »</li></ol>
     <p class="sub"><b>Sur Mac</b> : dans Chrome, menu ⋮ › « Installer la page en tant qu’application ». Dans Safari : Fichier › « Ajouter au Dock ».</p></div>
   <div class="card"><h2 style="margin-top:0">Zone sensible</h2><button class="btn danger" data-act="reset">Tout effacer</button></div>`;
 }
